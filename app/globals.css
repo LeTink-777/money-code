@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/*
+ * Palette is declared twice on purpose:
+ *  - the named tokens are the design spec's own vocabulary
+ *  - the short aliases below are what the Tailwind theme maps to, so every
+ *    project can share the same utility names (bg-card, text-accent, ...)
+ *    while the values stay unique per funnel.
+ */
+:root {
+  --bg-primary: #000800;
+  --bg-card: #001200;
+  --accent-matrix: #00FF41;
+  --accent-gold: #FFD700;
+  --text-primary: #00FF41;
+  --text-secondary: #008F11;
+
+  --bg: var(--bg-primary);
+  --card: var(--bg-card);
+  --elev: #002400;
+  --ink: var(--text-primary);
+  --muted: var(--text-secondary);
+  --accent: var(--accent-matrix);
+  --accent2: var(--accent-gold);
+  --accent3: var(--accent-matrix);
+  --line: rgba(0, 255, 65, 0.26);
+
+  --font-display-stack: var(--ff-display), var(--ff-body), ui-monospace, monospace;
+  --font-body-stack: var(--ff-display), var(--ff-body), ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-elev: var(--elev);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent2: var(--accent2);
+  --color-accent3: var(--accent3);
+  --color-line: var(--line);
+
+  --font-display: var(--font-display-stack);
+  --font-body: var(--font-body-stack);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body-stack);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+input,
+select,
+button,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Dates and money read better without the browser's default tabular jitter. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+
+/* Falling code behind the page — decorative only, kept at 2% opacity. */
+@keyframes matrix-fall {
+  from {
+    transform: translateY(-105%);
+  }
+  to {
+    transform: translateY(105%);
+  }
+}
+
+.matrix-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.02;
+}
+
+.matrix-col {
+  position: absolute;
+  top: 0;
+  white-space: pre;
+  font-family: var(--font-body-stack);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--accent-matrix);
+  animation-name: matrix-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  display: inline-block;
+  width: 0.6ch;
+  background: var(--accent-matrix);
+  animation: caret-blink 1s step-end infinite;
+}
+
