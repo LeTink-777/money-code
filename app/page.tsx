@@ -1,5 +1,6 @@
 import { MatrixRain } from "@/components/MatrixRain";
 import { TerminalForm } from "@/components/TerminalForm";
+import { Faq } from "@/components/Faq";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/lib/site";
 import { LOCKED_SECTIONS, PROFILES } from "@/lib/numerology";
@@ -73,6 +74,7 @@ export default function HomePage() {
             </p>
           </div>
         </section>
+        <Faq />
       </main>
       <SiteFooter />
     </>

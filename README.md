@@ -1,4 +1,4 @@
-# Денежный код по дате рождения
+# Расшифровка денежного кода по дате рождения
 
 Воронка на Next.js 16 (App Router, TypeScript, Tailwind CSS 4) с оплатой через ЮKassa.
 
@@ -28,6 +28,8 @@ npm run dev
 | `YOOKASSA_SECRET_KEY` | Секретный ключ ЮKassa (только на сервере) |
 | `YOOKASSA_SEND_RECEIPT` | `true`, если магазин настроен на фискализацию |
 | `NEXT_PUBLIC_SITE_URL` | Базовый адрес сайта для return_url и sitemap |
+| `RESEND_API_KEY` | Ключ Resend для доставки результата письмом |
+| `RESEND_FROM` | Адрес отправителя писем |
 
 Способ оплаты намеренно не фиксируется в запросе: ЮKassa показывает все методы,
 подключённые к магазину.
@@ -37,7 +39,9 @@ npm run dev
 ```bash
 npm run dev      # разработка
 npm run build    # продакшн-сборка
-npm run icons    # перегенерировать PNG-иконки из public/favicon.svg
+npm run icons    # PNG-иконки из public/favicon.svg
+npm run og       # og-image.png 1200x630
+npm run assets   # иконки + og-image разом
 npx tsc --noEmit # проверка типов
 ```
 
